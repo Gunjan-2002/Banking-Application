@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- IMPORTING HEAD TAG EJS FILE  -->
+    <%- include('./Component/Head_Tag') -%>
+
+        <style>
+            .custom_view {
+                display: flex;
+            }
+
+            .custom_view_left {
+                flex-basis: 50%;
+            }
+
+            .custom_view_right {
+                flex-basis: 50%;
+            }
+
+            #recAmountId:in-range {
+                background-color: rgb(255, 255, 255);
+            }
+
+            #recAmountId:out-of-range {
+                background-color: rgb(255 0 0 / 18%);
+                color: black;
+            }
+
+            #recAmountId:in-range+label::after {
+                content: "";
+            }
+
+            #recAmountId:out-of-range+label::after {
+                content: "Please try with lower amount";
+                font-size: 14px;
+                position: relative;
+                color: #f10202;
+                text-shadow: 1px 1px black;
+            }
+        </style>
+
+        <title>Document</title>
+</head>
+
+<body>
+
+    <%- include('./Component/NavBar') -%>
+
+        <!-- - Back to all users -->
+
+        <div class="container mt-2">
+            <a href="/data" class="btn btn-secondary fw-bold ">&larr; Back</a>
+        </div>
+
+      
+                <!-- - Alert msg -->
+                <% if(msg !="" ){%>
+                    <div class="alert alert-success text-center " role="alert" id="addMsg">
+                        <%=msg %>
+                    </div>
+                    <%} %>
+
+                       
+
+                        <div class="container bg-primary  text-center p-2 mt-3 ">
+                            <h3 class="text-light fw-4">Customer Details</h3>
+                        </div>
+                        <!-- Sender Details -->
+                        <div class="container mt-2 custom_view bg-dark text-white">
+                            <div class="container mt-4 custom_view_left text-center">
+                                <i class="far fa-user" style="font-size: 7rem;"></i>
+
+                            </div>
+                            <div class="container mt-4 custom_view_right">
+                                <% data.forEach((e)=> {%>
+                                    <h4>Name: <%= e.name %>
+                                    </h4>
+                                    <h4>Email: <%= e.email %>
+                                    </h4>
+                                    <h4>Mobile: <%= e.contact %>
+                                    </h4>
+                                    <h4>Balance: <%= e.amount %>
+                                    </h4>
+
+                                    <%}) %>
+                            </div>
+
+                        </div>
+
+                        
+
+
+
+                        <%- include('./Component/BootstrapScript') -%>
+
+                            <script>
+                                let alert = document.getElementById('addMsg');
+                                setTimeout(() => {
+                                    alert.style.visibility = "hidden"
+                                }, 2000)
+                            </script>
+
+</body>
+
+</html>

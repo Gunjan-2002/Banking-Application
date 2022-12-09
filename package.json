@@ -1,0 +1,17 @@
+{
+  "name": "banking_system",
+  "version": "1.0.0",
+  "description": "A Basic Banking System For DBMS Practical 09 Using MongoDb",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Gunjan Nimbalkar",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.1",
+    "express": "^4.18.2",
+    "mongodb": "^4.11.0",
+    "mongoose": "^6.7.2"
+  }
+}

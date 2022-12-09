@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <%- include('./Component/Head_Tag') -%>
+
+
+    <title>Document</title>
+</head>
+
+<body>
+
+  <%- include('./Component/NavBar') -%>
+
+    <!-- - Back to all users -->
+
+    <div class="container mt-2">
+      <a href="/" class="btn btn-secondary fw-bold ">&larr; Back</a>
+    </div>
+
+    <div class="container mt-5">
+
+      <!-- - Alert msg -->
+      <% if(msg !="" ){%>
+        <div class="alert alert-success text-center " role="alert" id="addMsg">
+          <%=msg %>
+        </div>
+        <%} %>
+
+          <div class="container mt-5 bg-primary text-center text-light fw-30 p-2" style=" border-radius: 20px">
+            <h3>Add User Form</h3>
+          </div>
+          <form action="/adduser" method="POST" class="mt-3" style="border:2px solid rgb(171, 255, 137) ; border-radius: 20px">
+            <div class="form-group m-3">
+              <label for="exampleInputEmail1">Name</label>
+              <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                name="userName" placeholder="Enter User Name" required>
+
+            </div>
+            <div class="form-group  m-3">
+              <label for="exampleInputEmail1">Email address</label>
+              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                name="userEmail" placeholder="Enter User Email">
+
+            </div>
+            <div class="form-group  m-3">
+              <label for="exampleInputPassword1">Mobile</label>
+              <input type="number" class="form-control" id="exampleInputPassword1" name="userNumber"
+                placeholder="Enter User Contact ">
+
+            </div>
+            <div class="form-group  m-3">
+              <label for="exampleInputEmail1">Amount</label>
+              <input type="Amount" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                name="userAmount" placeholder="Enter Amount">
+
+              <button type="submit" class="btn btn-primary mt-3 text-center">Submit</button>
+          </form>
+    </div>
+
+    <%- include('./Component/BootstrapScript') -%>
+      <script>
+        let alert = document.getElementById('addMsg');
+        setTimeout(() => {
+          alert.style.visibility = "hidden"
+        }, 2000)
+      </script>
+
+
+</body>
+
+</html>
