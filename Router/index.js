@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
 
 // THIS WILL OPEN ADD USER EJS FILE AND LET USER TO PUT INPUT IN FORM
 router.get('/adduser', (req, res) => {
-    res.render('Add_User', { title: "Add User", msg: '' })
+    res.render('AddUser', { title: "Add User", msg: '' })
 });
 
 // THIS WILL TAKE OUT ALL THE DATA FROM ADD USER FORM BY POST REQUEST AND THEN SAVE IT TO DATA BASE 
