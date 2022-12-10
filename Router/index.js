@@ -6,12 +6,12 @@ const historyModel = require('../Model/Transaction_History');
 
 // GET REQUEST TO SHOW HOME.EJS PAGE
 router.get('/', (req, res) => {
-    res.render('Home')
+    res.render('home')
 });
 
 // THIS WILL OPEN ADD USER EJS FILE AND LET USER TO PUT INPUT IN FORM
 router.get('/adduser', (req, res) => {
-    res.render('AddUser', { title: "Add User", msg: '' })
+    res.render('adduser', { title: "Add User", msg: '' })
 });
 
 // THIS WILL TAKE OUT ALL THE DATA FROM ADD USER FORM BY POST REQUEST AND THEN SAVE IT TO DATA BASE 
@@ -29,7 +29,7 @@ router.post('/adduser', (req, res) => {
         );
 
     User.save().then(() => {
-        res.render('Add_User', { title: "Add User", msg: 'User Added Succesfully' })
+        res.render('adduser', { title: "Add User", msg: 'User Added Succesfully' })
     }).catch((err) => {
         console.log(err);
     })
@@ -45,7 +45,7 @@ router.get('/data', (req, res) => {
             throw err;
         }
         else {
-            res.render('View_User', { title: "View Users", data: data });
+            res.render('viewuser', { title: "View Users", data: data });
         }
     })
 })
@@ -86,7 +86,7 @@ router.get("/view/:id", (req, res) => {
                     throw err;
                 }
                 else {
-                    res.render('View_Transfer', { title: "View Transfer", data: uData, records: rData })
+                    res.render('viewtransfer', { title: "View Transfer", data: uData, records: rData })
                 }
             })
         }
@@ -110,7 +110,7 @@ router.post('/transfer', (req, res) => {
 
     if (reciverName === 'Select Reciver Name' || reciverEmail === 'Select Reciver Email') {
 
-        res.render('Succes_Page', { title: "Sucess", value: "", msg: "", errmsg: "All fields are require!" });
+        res.render('succespage', { title: "Sucess", value: "", msg: "", errmsg: "All fields are require!" });
     } else {
 
         const Sender = customers.find({ "_id": SenderID })
@@ -121,7 +121,7 @@ router.post('/transfer', (req, res) => {
             senderData.forEach(async (c) => {
                 if (c.name === reciverName || c.email === reciverEmail || c.amount < transferAmount) {
 
-                    res.render('Succes_Page', { title: "Failed", value: "", msg: "", errmsg: "Process Not Complete due to incorrect reciver details!" });
+                    res.render('succespage', { title: "Failed", value: "", msg: "", errmsg: "Process Not Complete due to incorrect reciver details!" });
                 }
 
                 else {
@@ -138,7 +138,7 @@ router.post('/transfer', (req, res) => {
                     })
                 }
 
-                res.render('Succes_Page', { title: "Sucess", value: "True", msg: "Transfer Sucessfull" })
+                res.render('succespage', { title: "Sucess", value: "True", msg: "Transfer Sucessfull" })
             });
 
         }).catch((err) => {
@@ -166,7 +166,7 @@ router.get('/view/edit/:id', (req, res) => {
                     throw err;
                 }
                 else {
-                    res.render('Edit', { title: "Edit Details", data: uData })
+                    res.render('edit', { title: "Edit Details", data: uData })
                 }
             })
         }
@@ -192,7 +192,7 @@ router.post('/edit', (req, res) => {
             let updateAmount = parseInt(c.amount) + parseInt(ChangeBalance);
             await customers.findOneAndUpdate({ "_id": ChangerID }, { "$set": { "amount": updateAmount, "name": ChangeName, "email": ChangeEmail, "contact": ChangeContact } });
 
-            res.render('Succes_Page', { title: "Sucess", value: "True", msg: "Changes Made Sucessfully" })
+            res.render('succespage', { title: "Sucess", value: "True", msg: "Changes Made Sucessfully" })
         });
 
     }).catch((err) => {
@@ -211,7 +211,7 @@ router.get('/history', (req, res) => {
             throw err;
         }
         else {
-            res.render('Transaction_History', { title: 'History', data: hdata })
+            res.render('transactionhistory', { title: 'History', data: hdata })
         }
     });
 });
@@ -252,7 +252,7 @@ router.post('/search', (req, res) => {
                     throw err;
                 }
                 else {
-                    res.render('Show_User', { title: "View Transfer", data: uData , records: rData , msg: "Customer Found" , value: "True"})
+                    res.render('showuser', { title: "View Transfer", data: uData , records: rData , msg: "Customer Found" , value: "True"})
                 }
             })
         }
